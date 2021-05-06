@@ -98,10 +98,5 @@ namespace oto_kiralama_otomasyonu
             sfr.Show();
             this.Hide();
         }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
