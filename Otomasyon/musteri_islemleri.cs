@@ -121,34 +121,7 @@ namespace oto_kiralama_otomasyonu
             textBox9.Text = dataGridView1.CurrentRow.Cells[9].Value.ToString();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            DialogResult cevap;
-            cevap = MessageBox.Show("Kaydı silmek istediğinizden eminmisiniz", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (cevap == DialogResult.Yes && dataGridView1.CurrentRow.Cells[0].Value.ToString().Trim() != "")
-            {
-                try
-                {
-                    
-                    if (baglanti.State==ConnectionState.Closed)
-                    {
-                        baglanti.Open();
-                    }
-                    SqlCommand sil = new SqlCommand("delete from musteri where id='" + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "'", baglanti);
-                    sil.ExecuteNonQuery();
-                    MessageBox.Show("Silme İşleminiz Başarılı");
-                    doldur();
-                    baglanti.Close();
-
-                }
-                catch 
-                {
-
-   ;
-                }
-
-            }
-        }
+        
 
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
@@ -178,15 +151,5 @@ namespace oto_kiralama_otomasyonu
        
     }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-            baglanti.Open();
-            SqlCommand adtr = new SqlCommand("UPDATE musteri set tc='"+maskedTextBox1.Text+"',adi_soyadi='"+textBox2.Text+"',cinsiyet='"+textBox3.Text+"',telefon='"+textBox4.Text+"',dogum_tarihi='"+textBox5.Text+"',ehliyet_no='"+textBox6.Text+"'where id='"+ dataGridView1.CurrentRow.Cells[0].Value.ToString() + "'", baglanti);
-            adtr.ExecuteNonQuery();
-            baglanti.Close();
-            MessageBox.Show("Güncelleme İşlemi Başarılı");
-            doldur();
-        }
     }
 }
