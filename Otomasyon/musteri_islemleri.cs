@@ -16,7 +16,7 @@ namespace oto_kiralama_otomasyonu
         {
             InitializeComponent();
         }
-        SqlConnection baglanti = new SqlConnection("Data Source=DESKTOP-ANR9FF7;Initial Catalog=oto_kiralama;Integrated Security=True");
+        SqlConnection baglanti = new SqlConnection("Data Source=localhost\\SQLExpress; initial Catalog=oto_kiralama; Integrated Security=true;");
         DataTable dt = new DataTable();
        
         private void musteri_islemleri_Load(object sender, EventArgs e)
@@ -178,6 +178,15 @@ namespace oto_kiralama_otomasyonu
        
     }
 
-    
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            baglanti.Open();
+            SqlCommand adtr = new SqlCommand("UPDATE musteri set tc='"+maskedTextBox1.Text+"',adi_soyadi='"+textBox2.Text+"',cinsiyet='"+textBox3.Text+"',telefon='"+textBox4.Text+"',dogum_tarihi='"+textBox5.Text+"',ehliyet_no='"+textBox6.Text+"'where id='"+ dataGridView1.CurrentRow.Cells[0].Value.ToString() + "'", baglanti);
+            adtr.ExecuteNonQuery();
+            baglanti.Close();
+            MessageBox.Show("Güncelleme İşlemi Başarılı");
+            doldur();
+        }
     }
 }
