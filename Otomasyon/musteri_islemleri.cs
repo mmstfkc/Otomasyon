@@ -121,7 +121,7 @@ namespace oto_kiralama_otomasyonu
             textBox9.Text = dataGridView1.CurrentRow.Cells[9].Value.ToString();
         }
 
-        
+      
 
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
@@ -150,6 +150,7 @@ namespace oto_kiralama_otomasyonu
            
        
     }
+
 
     }
 }
