@@ -109,9 +109,49 @@ namespace oto_kiralama_otomasyonu
             textBox4.Text = dateTimePicker2.Value.ToShortDateString();
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand komut = new SqlCommand("insert into kiralama(tc,plaka,alis_tarihi,veris_tarihi,ucret) values('" + comboBox1.Text + "','" + comboBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + textBox5.Text + "')", baglanti);
+                //
+                // 
+                if (baglanti.State == ConnectionState.Closed)
+                {
+                    baglanti.Open();
+                }
 
-   
+                komut.ExecuteNonQuery();
+             
+                try
+                {
+                    if (baglanti.State == ConnectionState.Closed)
+                    {
+                        baglanti.Open();
+                    }
+                    SqlCommand guncelle = new SqlCommand("update arac set durum ='"+"Kirada"+"'where plaka='"+comboBox2.Text+"' ",baglanti);
+                    guncelle.ExecuteNonQuery();
+                    uygunaracdoldur();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                MessageBox.Show("Ekleme İşleminiz Başarılı");
+                baglanti.Close();
+
+              doldur();
+            }
+            catch (Exception hata)
+            {
+
+                MessageBox.Show(hata.Message);
+            }
+
+        }
+
+       
 
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
@@ -148,7 +188,6 @@ namespace oto_kiralama_otomasyonu
         }
 
       
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             comboBox1.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
