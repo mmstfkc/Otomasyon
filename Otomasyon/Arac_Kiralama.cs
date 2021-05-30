@@ -215,7 +215,19 @@ namespace oto_kiralama_otomasyonu
 
         }
 
-       
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update kiralama set tc='"+comboBox1.Text+"',plaka='"+comboBox2.Text+"',alis_tarihi='"+textBox3.Text+"',veris_tarihi='"+textBox4.Text+"',ucret='"+textBox5.Text+"' where id='"+ dataGridView1.CurrentRow.Cells[0].Value.ToString() + "'",baglanti);
+            // 
+            if (baglanti.State == ConnectionState.Closed)
+            {
+                baglanti.Open();
+            }
+            komut.ExecuteNonQuery();
+            baglanti.Close();
+            MessageBox.Show("Güncelleme İşlemi Başarılı");
+            doldur();
+        }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
