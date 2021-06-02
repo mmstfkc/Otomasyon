@@ -12,7 +12,8 @@ namespace oto_kiralama_otomasyonu
 {
     public partial class arac_Teslim : Form
     {
-        
+        SqlConnection baglanti = new SqlConnection("Data Source=localhost\\SQLExpress; initial Catalog=oto_kiralama; Integrated Security=true");
+        DataTable dt = new DataTable();
         public arac_Teslim()
         {
             InitializeComponent();
@@ -27,10 +28,20 @@ namespace oto_kiralama_otomasyonu
         void uygunaracdoldur()
         {
             comboBox1.Items.Clear();
-            
+            if (baglanti.State == ConnectionState.Closed)
+            {
+                baglanti.Open();
+            }
+            SqlCommand komut = new SqlCommand("select plaka from arac where durum='" + "Kirada" + "'", baglanti);
+            SqlDataReader oku = komut.ExecuteReader();
+            while (oku.Read())
+            {
+                comboBox1.Items.Add(oku["plaka"].ToString());
+            }
+            baglanti.Close();
         }
 
-        
+
 
         private void arac_Teslim_Load(object sender, EventArgs e)
         {
