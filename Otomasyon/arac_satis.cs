@@ -90,6 +90,49 @@ namespace oto_kiralama_otomasyonu
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand komut = new SqlCommand("insert into arac_satis(tc,plaka,alis_tarihi,veris_tarihi,ucret) values('" + comboBox1.Text + "','" + comboBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + textBox5.Text + "')", baglanti);
+                //
+                // 
+                if (baglanti.State == ConnectionState.Closed)
+                {
+                    baglanti.Open();
+                }
+
+                komut.ExecuteNonQuery();
+
+                try
+                {
+                    if (baglanti.State == ConnectionState.Closed)
+                    {
+                        baglanti.Open();
+                    }
+
+                  
+                    SqlCommand sil = new SqlCommand("delete from arac where plaka='" + comboBox2.Text + "'", baglanti);
+                    sil.ExecuteNonQuery();
+                    uygunaracdoldur();
+                    doldur();
+                }
+                catch 
+                {
+
+                    ;
+                }
+                MessageBox.Show("Satış İşlemi İşleminiz Başarılı");
+                baglanti.Close();
+
+                doldur();
+            }
+            catch (Exception hata)
+            {
+
+                MessageBox.Show(hata.Message);
+            }
+        }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
@@ -159,9 +202,7 @@ namespace oto_kiralama_otomasyonu
             this.Hide();
         }
 
-            
-
-       
+        
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
