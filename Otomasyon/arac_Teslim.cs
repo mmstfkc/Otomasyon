@@ -41,7 +41,20 @@ namespace oto_kiralama_otomasyonu
             baglanti.Close();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (baglanti.State == ConnectionState.Closed)
+            {
+                baglanti.Open();
+            }
 
+            SqlCommand guncelle = new SqlCommand("update arac set durum ='" + "Uygun" + "'where plaka='" + comboBox1.Text + "' ", baglanti);
+            guncelle.ExecuteNonQuery();
+            uygunaracdoldur();
+            baglanti.Close();
+            MessageBox.Show("Araç Kiralamaya Uygun Hale Getirilmiştir.");
+            comboBox1.Text = "";
+        }
 
         private void arac_Teslim_Load(object sender, EventArgs e)
         {
