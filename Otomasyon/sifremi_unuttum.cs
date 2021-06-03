@@ -15,7 +15,7 @@ namespace oto_kiralama_otomasyonu
         {
             InitializeComponent();
         }
-        SqlConnection baglanti = new SqlConnection("Data Source=localhost\\SQLExpress; initial Catalog=oto_kiralama; Integrated Security=true;");
+        SqlConnection baglanti = new baglan().baglanti;
         DataTable dt = new DataTable();
 
         private void button2_Click(object sender, EventArgs e)

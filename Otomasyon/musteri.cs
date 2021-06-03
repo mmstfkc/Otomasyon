@@ -16,7 +16,7 @@ namespace oto_kiralama_otomasyonu
         {
             InitializeComponent();
         }
-        SqlConnection baglanti = new SqlConnection("Data Source=DESKTOP-ANR9FF7;Initial Catalog=oto_kiralama;Integrated Security=True");
+        SqlConnection baglanti = new baglan().baglanti;
         DataTable dt = new DataTable();
         private void button5_Click(object sender, EventArgs e)
         {

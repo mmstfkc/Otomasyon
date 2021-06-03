@@ -12,7 +12,7 @@ namespace oto_kiralama_otomasyonu
 {
     public partial class arac_Teslim : Form
     {
-        SqlConnection baglanti = new SqlConnection("Data Source=localhost\\SQLExpress; initial Catalog=oto_kiralama; Integrated Security=true");
+        SqlConnection baglanti = new baglan().baglanti;
         DataTable dt = new DataTable();
         public arac_Teslim()
         {

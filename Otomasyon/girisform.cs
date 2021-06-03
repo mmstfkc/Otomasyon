@@ -20,7 +20,7 @@ namespace oto_kiralama_otomasyonu
         private void button2_Click(object sender, EventArgs e)
         {
 
-            SqlConnection baglanti = new SqlConnection("Data Source=localhost\\SQLExpress; initial Catalog=oto_kiralama; Integrated Security=true");
+            SqlConnection baglanti = new baglan().baglanti;
             //mysql bağlantıyı sağladık
             SqlCommand komut = new SqlCommand("select * from musteri where tc='" + textBox5.Text + "' and sifre ='" + textBox1.Text + "'", baglanti);
             //mysql komutumuzu yazdık komutta veritabanındaki admin tablosunda kullanıcı adı textbox1.text olan şifresi textbox2.text olan veriyi
@@ -48,9 +48,7 @@ namespace oto_kiralama_otomasyonu
 
         private void button4_Click(object sender, EventArgs e)
         {
-
-
-            SqlConnection baglanti = new SqlConnection("Data Source=localhost\\SQLExpress; initial Catalog=oto_kiralama; Integrated Security=true");
+            SqlConnection baglanti = new baglan().baglanti;
             //mysql bağlantıyı sağladık
             SqlCommand komut = new SqlCommand("select * from admin where k_adi='" + textBox3.Text + "' and sifre ='" + textBox2.Text + "'", baglanti);
             //mysql komutumuzu yazdık komutta veritabanındaki admin tablosunda kullanıcı adı textbox1.text olan şifresi textbox2.text olan veriyi

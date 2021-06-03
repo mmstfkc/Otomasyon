@@ -15,7 +15,7 @@ namespace oto_kiralama_otomasyonu
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new menu());
+            Application.Run(new girisform());
         }
     }
 }
